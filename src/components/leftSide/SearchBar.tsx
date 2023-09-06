@@ -1,6 +1,6 @@
 const SearchBar = () => {
 	return (
-		<div className="join">
+		<div className="join w-full">
 			<div>
 				<div>
 					<input
