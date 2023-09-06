@@ -3,9 +3,9 @@ import RightSideColumn from "./rightSide/RightSideColumn"
 
 const WeatherCard = () => {
 	return (
-		<div className="card w-96 bg-base-100 text-primary-content p-0">
+		<div className="card w-[80%]  bg-base-100 text-primary-content p-0">
 			<div className="card-body">
-				<div className="flex">
+				<div className="flex lg:flex-row xs:flex-col">
 					<div className="w-[30%]">
 						<LeftSideColumn />
 					</div>

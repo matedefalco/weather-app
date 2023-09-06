@@ -5,7 +5,7 @@ import WeatherKPs from "./WeatherKPs"
 
 const LeftSideColumn = () => {
 	return (
-		<div className="w-full bg-base-100 flex flex-col justify-center">
+		<div className="w-full bg-base-100 flex flex-col justify-between h-full">
 			<SearchBar />
 			<WeatherImage />
 			<WeatherKPs />
