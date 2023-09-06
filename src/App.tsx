@@ -1,5 +1,7 @@
+import WeatherCard from "./components/WeatherCard"
+
 const App = () => {
-	return <div>Hola mundo</div>
+	return <WeatherCard />
 }
 
 export default App
