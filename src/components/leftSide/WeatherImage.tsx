@@ -1,4 +1,4 @@
-import { TWeatherImages, TWeatherImage } from "../../types/IWeatherImages"
+import { TWeatherImages } from "../../types/IWeatherImages"
 
 const weatherImages: TWeatherImages = {
 	images: [
@@ -39,7 +39,7 @@ const WeatherImage = () => {
 			<img
 				src={weatherImages.images[0].src}
 				alt={weatherImages.images[0].alt}
-				style={{ maxWidth: "100px" }}
+				className="w-full"
 			/>
 		</div>
 	)
