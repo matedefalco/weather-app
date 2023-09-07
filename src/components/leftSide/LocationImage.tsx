@@ -45,7 +45,13 @@ const LocationImage: React.FC<LocationImageProps> = ({ locationName }) => {
 					</div>
 				</>
 			) : (
-				<p>No se encontró una imagen para esta ubicación.</p>
+				<div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
+					<div className="bg-black bg-opacity-50 rounded-2xl w-full h-full flex items-center justify-center">
+						<p className="flex justify-center text-gray-200 p-2 text-center">
+							No se encontró una imagen para esta ubicación.
+						</p>
+					</div>
+				</div>
 			)}
 		</div>
 	)
