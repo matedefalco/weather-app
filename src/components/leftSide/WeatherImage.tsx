@@ -1,46 +1,11 @@
-import { TWeatherImages } from "../../types/IWeatherImages"
-
-const weatherImages: TWeatherImages = {
-	images: [
-		{
-			src: "/cloudy.svg",
-			alt: "Cloudy",
-		},
-		{
-			src: "/night.svg",
-			alt: "Night",
-		},
-		{
-			src: "/rainy.svg",
-			alt: "Rainy",
-		},
-		{
-			src: "/stormy.svg",
-			alt: "Stormy",
-		},
-		{
-			src: "/cloudyRainy.svg",
-			alt: "CloudyRainy",
-		},
-		{
-			src: "/sunyCloudy.svg",
-			alt: "SunyCloudy",
-		},
-		{
-			src: "/sunny.svg",
-			alt: "Sunny",
-		},
-	],
-}
+import { weatherIcons } from "../../assets/WeatherIcons"
 
 const WeatherImage = () => {
+	const selectedImage = weatherIcons.images[0]
+
 	return (
 		<div className="flex justify-center items-center">
-			<img
-				src={weatherImages.images[0].src}
-				alt={weatherImages.images[0].alt}
-				className="w-full"
-			/>
+			<img src={selectedImage.src} alt={selectedImage.alt} className="w-full" />
 		</div>
 	)
 }
