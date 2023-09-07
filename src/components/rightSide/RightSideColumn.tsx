@@ -73,7 +73,7 @@ const RightSideColumn = () => {
 	return (
 		<div className="w-full bg-base-400 flex flex-col h-full bg-gray-200 p-8 gap-8">
 			<FilterBar activeTab={activeTab} setActiveTab={setActiveTab} />
-			<div className="h-full w-full flex flex-col justify-between">
+			<div className="h-full w-full flex flex-col justify-between gap-8">
 				{activeTab === "Today" ? (
 					<TodaysWeather weatherData={todaysWeatherData} />
 				) : (

@@ -5,8 +5,8 @@ import { FilterBarProps } from "../../../types/IFilter"
 
 const FilterBar: React.FC<FilterBarProps> = ({ activeTab, setActiveTab }) => {
 	return (
-		<div className="flex justify-between">
-			<div className="flex gap-4 items-center">
+		<div className="flex items-center justify-center lg:justify-between flex-col lg:flex-row gap-4">
+			<div className="flex flex-col lg:flex-row gap-4 items-center">
 				<DayFilter setActiveTab={setActiveTab} activeTab={activeTab} />
 				<MeasureFilter />
 			</div>
