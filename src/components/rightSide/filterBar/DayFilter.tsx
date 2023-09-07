@@ -8,7 +8,7 @@ const DayFilter = () => {
 	}
 
 	return (
-		<div className="tabs p-4">
+		<div className="tabs flex items-center">
 			<a
 				className={`tab tab-bordered ${
 					activeTab === "Today" ? "tab-active" : ""

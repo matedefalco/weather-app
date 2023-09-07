@@ -1,6 +1,6 @@
 const MeasureFilter = () => {
 	return (
-		<div className="p-4">
+		<div>
 			<label className="btn btn-circle swap swap-rotate">
 				{/* this hidden checkbox controls the state */}
 				<input type="checkbox" />
