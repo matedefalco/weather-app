@@ -23,7 +23,7 @@ const WeatherKPIs = () => {
 
 	return (
 		<div className="flex flex-col gap-2 w-[80%] px-2">
-			<p className="text-2xl text-xs font-bold">{weatherInfo.temperature}°C</p>
+			<p className="text-2xl font-bold">{weatherInfo.temperature}°C</p>
 			<div className="flex items-center gap-1">
 				<p className="text-sm font-bold flex-none">
 					{currentTime.toLocaleDateString()}
