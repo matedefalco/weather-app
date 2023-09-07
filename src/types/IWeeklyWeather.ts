@@ -4,3 +4,8 @@ export interface DailyWeatherData {
 	weather: string
 	weatherIcon: string
 }
+
+export interface DayFilterProps {
+	setActiveTab: (tabName: string) => void
+	activeTab: string
+}

@@ -1,9 +1,7 @@
-import { useState } from "react"
+import { DayFilterProps } from "../../../types/IWeeklyWeather"
 
-const DayFilter = () => {
-	const [activeTab, setActiveTab] = useState<string>("Today")
-
-	const handleTabClick = (tabName: string): void => {
+const DayFilter: React.FC<DayFilterProps> = ({ setActiveTab, activeTab }) => {
+	const handleTabClick = (tabName: string) => {
 		setActiveTab(tabName)
 	}
 
