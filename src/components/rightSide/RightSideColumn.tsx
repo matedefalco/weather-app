@@ -4,10 +4,12 @@ import WeeklyWeather from "./weekWeather/WeeklyWeather"
 
 const RightSideColumn = () => {
 	return (
-		<div className="w-full bg-base-400 flex flex-col justify-between h-full bg-gray-200">
+		<div className="w-full bg-base-400 flex flex-col h-full bg-gray-200 p-8 gap-8">
 			<FilterBar />
-			<WeeklyWeather />
-			<WeatherStats />
+			<div className="h-full w-full flex flex-col justify-between">
+				<WeeklyWeather />
+				<WeatherStats />
+			</div>
 		</div>
 	)
 }

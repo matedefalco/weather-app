@@ -36,12 +36,12 @@ const WeatherKPIs = () => {
 				</span>
 			</div>
 			<div className="w-[80%] border bg-gray-300 h-[0.5]" />
-			<div className="flex">
-				<p className="text-gray-400 text-xs flex-1">Day Weather:</p>
+			<div className="flex gap-1">
+				<p className="text-gray-400 text-xs flex-none">Day Weather:</p>
 				<p className="text-xs font-bold">{weatherInfo.dayWeather}</p>
 			</div>
-			<div className="flex">
-				<p className="text-gray-400 text-xs flex-1">Rain Chances:</p>
+			<div className="flex gap-1">
+				<p className="text-gray-400 text-xs flex-none">Rain Chances:</p>
 				<p className="text-xs font-bold">{weatherInfo.rainChances}%</p>
 			</div>
 		</div>
