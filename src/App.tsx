@@ -1,9 +1,9 @@
-import WeatherCard from "./components/WeatherCard"
+import WeatherLayout from "./components/WeatherLayout"
 
 const App = () => {
 	return (
 		<main className="flex justify-center">
-			<WeatherCard />
+			<WeatherLayout />
 		</main>
 	)
 }
