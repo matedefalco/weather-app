@@ -1,5 +1,5 @@
 import React from "react"
-import { DailyWeatherData } from "../../../types/IWeeklyWeather"
+import { DailyWeatherData } from "../../../types/IWeatherData"
 import { weatherIcons } from "../../../assets/WeatherIcons"
 
 // Define un objeto que mapea nombres de clima a índices válidos

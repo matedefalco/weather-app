@@ -1,4 +1,4 @@
-import { DayFilterProps } from "../../../types/IWeeklyWeather"
+import { DayFilterProps } from "../../../types/IWeatherData"
 
 const DayFilter: React.FC<DayFilterProps> = ({ setActiveTab, activeTab }) => {
 	const handleTabClick = (tabName: string) => {

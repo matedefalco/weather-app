@@ -1,43 +1,7 @@
 import DailyWeatherCard from "./DailyWeatherCard"
-import { DailyWeatherData } from "../../../types/IWeeklyWeather"
+import { WeeklyWeatherProps } from "../../../types/IWeatherData"
 
-const WeeklyWeather = () => {
-	// Datos de prueba para representar la información del clima para cada día de la semana
-	const weekWeatherData: DailyWeatherData[] = [
-		{ day: "Monday", temperature: 25, weather: "Sunny", weatherIcon: "sunny" },
-		{
-			day: "Tuesday",
-			temperature: 23,
-			weather: "Partly Cloudy",
-			weatherIcon: "sunnyCloudy",
-		},
-		{
-			day: "Wednesday",
-			temperature: 20,
-			weather: "Cloudy",
-			weatherIcon: "cloudy",
-		},
-		{
-			day: "Thursday",
-			temperature: 22,
-			weather: "Showers",
-			weatherIcon: "rainy",
-		},
-		{ day: "Friday", temperature: 27, weather: "Sunny", weatherIcon: "sunny" },
-		{
-			day: "Saturday",
-			temperature: 28,
-			weather: "Storm",
-			weatherIcon: "stormy",
-		},
-		{
-			day: "Sunday",
-			temperature: 26,
-			weather: "Partly Cloudy",
-			weatherIcon: "cloudyRainy",
-		},
-	]
-
+const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ weekWeatherData }) => {
 	return (
 		<div className="flex justify-center">
 			<div className="flex gap-4 justify-between overflow-scroll">
@@ -48,6 +12,7 @@ const WeeklyWeather = () => {
 						temperature={dayData.temperature}
 						weather={dayData.weather}
 						weatherIcon={dayData.weatherIcon}
+						rainChances={dayData.rainChances}
 					/>
 				))}
 			</div>
