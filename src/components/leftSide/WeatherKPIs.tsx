@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react"
-import { TWeatherInfo } from "../../types/TWeatherInfo"
+import { DailyWeatherData } from "../../types/IWeatherData.tsx"
 
 const WeatherKPIs = () => {
 	// const [weatherInfo, setWeatherInfo] = useState<TWeatherInfo>({
-	const weatherInfo: TWeatherInfo = {
+	const weatherInfo: DailyWeatherData = {
+		day: "Monday",
 		temperature: 25,
-		dayWeather: "Sunny",
+		weather: "Sunny",
+		weatherIcon: "sunny",
 		rainChances: 10,
 	}
 
@@ -38,7 +40,7 @@ const WeatherKPIs = () => {
 			<div className="w-[80%] border bg-gray-300 h-[0.5]" />
 			<div className="flex gap-1">
 				<p className="text-gray-400 text-xs flex-none">Day Weather:</p>
-				<p className="text-xs font-bold">{weatherInfo.dayWeather}</p>
+				<p className="text-xs font-bold">{weatherInfo.weather}</p>
 			</div>
 			<div className="flex gap-1">
 				<p className="text-gray-400 text-xs flex-none">Rain Chances:</p>
