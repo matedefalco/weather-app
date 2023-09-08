@@ -2,6 +2,7 @@ import React from "react"
 import { TodaysWeatherProps } from "../../../types/IWeatherData"
 import { weatherIcons } from "../../../assets/WeatherIcons"
 import WeatherChart from "./WeatherChart"
+import { useMeasureType } from "../../../context/MeasureTypeContext"
 
 // Define un objeto que mapea nombres de clima a alt correspondientes en weatherIcons.images
 const weatherAltMap: Record<string, string> = {
@@ -16,6 +17,8 @@ const weatherAltMap: Record<string, string> = {
 const TodaysWeather: React.FC<TodaysWeatherProps> = ({ weatherData }) => {
 	// Obtén el alt correspondiente al tipo de clima
 	const alt = weatherAltMap[weatherData.weatherIcon]
+
+	const { measureType } = useMeasureType()
 
 	// Busca la imagen correspondiente en weatherIcons.images usando el alt
 	const weatherIconSrc =
@@ -34,7 +37,10 @@ const TodaysWeather: React.FC<TodaysWeatherProps> = ({ weatherData }) => {
 					<p className="">{weatherData.day}</p>
 					<div className="flex gap-1">
 						<p className="flex-none">Temperature: </p>
-						<p className="font-bold">{weatherData.temperature}°C</p>
+						<p className="font-bold">
+							{weatherData.temperature}
+							{measureType == "Celsius" ? "°C" : "ºF"}
+						</p>
 					</div>
 					<div className="flex gap-1">
 						<p className="flex-none">Rain Chances: </p>
@@ -42,7 +48,9 @@ const TodaysWeather: React.FC<TodaysWeatherProps> = ({ weatherData }) => {
 					</div>
 					<div className="flex gap-1">
 						<p className="flex-none">Feels Like Temperature: </p>
-						<p className="font-bold">°C</p>
+						<p className="font-bold">
+							{measureType == "Celsius" ? "°C" : "ºF"}
+						</p>
 					</div>
 				</div>
 				<div className="flex flex-col justify-end text-sm lg:text-md">

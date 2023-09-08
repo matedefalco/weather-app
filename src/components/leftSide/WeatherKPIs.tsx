@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { DailyWeatherData } from "../../types/IWeatherData.tsx"
+import { useMeasureType } from "../../context/MeasureTypeContext.tsx"
 
 const WeatherKPIs = () => {
 	// const [weatherInfo, setWeatherInfo] = useState<TWeatherInfo>({
@@ -13,6 +14,8 @@ const WeatherKPIs = () => {
 
 	const [currentTime, setCurrentTime] = useState(new Date())
 
+	const { measureType } = useMeasureType()
+
 	useEffect(() => {
 		// Actualizar la hora actual cada segundo
 		const intervalId = setInterval(() => {
@@ -25,7 +28,10 @@ const WeatherKPIs = () => {
 
 	return (
 		<div className="flex flex-col gap-2 w-[80%] px-2">
-			<p className="text-2xl font-bold">{weatherInfo.temperature}°C</p>
+			<p className="text-2xl font-bold">
+				{weatherInfo.temperature}
+				{measureType == "Celsius" ? "°C" : "ºF"}
+			</p>
 			<div className="flex items-center gap-1">
 				<p className="text-sm font-bold flex-none">
 					{currentTime.toLocaleDateString()}
