@@ -25,10 +25,10 @@ const DailyWeatherCard: React.FC<DailyWeatherData> = ({
 	const weatherIconSrc = weatherIcons.images[weatherIndex]?.src || ""
 
 	return (
-		<div className="card bg-white card-compact">
-			<div className="card-body flex flex-col items-center justify-center overflow-scroll min-w-[12%]">
+		<div className="card bg-[--primary-color] card-compact">
+			<div className="card-body flex flex-col items-center justify-between overflow-scroll min-w-[12%] p-1">
 				<h2 className="font-bold">{day}</h2>
-				<img src={weatherIconSrc} alt={weather} />
+				<img src={weatherIconSrc} alt={weather} className="w-16 h-16" />
 				<p className="font-bold text-xs">{temperature}°C</p>
 			</div>
 		</div>

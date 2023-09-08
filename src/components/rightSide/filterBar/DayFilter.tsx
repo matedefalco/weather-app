@@ -8,7 +8,7 @@ const DayFilter: React.FC<DayFilterProps> = ({ setActiveTab, activeTab }) => {
 	return (
 		<div className="tabs flex items-center">
 			<a
-				className={`tab tab-bordered ${
+				className={`tab tab-bordered dark:text-white ${
 					activeTab === "Today" ? "tab-active" : ""
 				}`}
 				onClick={() => handleTabClick("Today")}
@@ -16,7 +16,7 @@ const DayFilter: React.FC<DayFilterProps> = ({ setActiveTab, activeTab }) => {
 				Today
 			</a>
 			<a
-				className={`tab tab-bordered ${
+				className={`tab tab-bordered dark:text-white ${
 					activeTab === "Week" ? "tab-active" : ""
 				}`}
 				onClick={() => handleTabClick("Week")}

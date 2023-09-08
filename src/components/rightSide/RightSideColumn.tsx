@@ -71,7 +71,7 @@ const RightSideColumn = () => {
 	}
 
 	return (
-		<div className="w-full bg-base-400 flex flex-col h-full bg-gray-200 p-8 gap-8">
+		<div className="w-full bg-base-400 flex flex-col h-full bg-[--secondary-color] p-8 gap-8 rounded-2xl">
 			<FilterBar activeTab={activeTab} setActiveTab={setActiveTab} />
 			<div className="h-full w-full flex flex-col justify-between gap-8">
 				{activeTab === "Today" ? (

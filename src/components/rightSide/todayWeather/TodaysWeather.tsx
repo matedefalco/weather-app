@@ -22,7 +22,7 @@ const TodaysWeather: React.FC<TodaysWeatherProps> = ({ weatherData }) => {
 		weatherIcons.images.find((image) => image.alt === alt)?.src || ""
 
 	return (
-		<div className="card card-side bg-base-100 shadow-xl">
+		<div className="card card-side bg-[--primary-color] shadow-xl">
 			<div className="card-body flex flex-col lg:flex-row items-center justify-between">
 				<img
 					src={weatherIconSrc}

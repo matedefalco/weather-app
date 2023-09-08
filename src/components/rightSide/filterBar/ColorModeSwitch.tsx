@@ -4,14 +4,22 @@ const ColorModeSwitch = () => {
 
 	return (
 		<div className="flex gap-2 items-center">
-			<img src="/sunIcon.svg" alt="Sun" className="w-5 h-5" />
+			<img
+				src={isDarkMode ? "/sunIconDark.svg" : "/sunIconLight.svg"}
+				alt="Sun"
+				className="w-5 h-5"
+			/>
 			<input
 				type="checkbox"
 				className="toggle"
 				onClick={toggleDarkMode}
 				checked={isDarkMode}
 			/>
-			<img src="/moonIcon.svg" alt="Moon" className="w-5 h-5 " />
+			<img
+				src={isDarkMode ? "/moonIconDark.svg" : "/moonIconLight.svg"}
+				alt="Moon"
+				className="w-5 h-5 "
+			/>
 		</div>
 	)
 }
