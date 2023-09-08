@@ -9,7 +9,9 @@ const SearchBar = () => {
 					/>
 				</div>
 				<div className="indicator">
-					<button className="btn join-item">Search</button>
+					<button className="btn join-item border-solid border-2 border-l-1 border-[#cccfd6ff] dark:bg-slate-200">
+						Search
+					</button>
 				</div>
 			</div>
 		</div>
