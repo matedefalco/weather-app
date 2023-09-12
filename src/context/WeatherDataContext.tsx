@@ -2,52 +2,49 @@ import React, { createContext, useState, useEffect } from "react"
 import {
 	WeatherDataContextValue,
 	WeatherDataProviderProps,
-	WeeklyWeatherProps,
 } from "../types/IWeatherData"
 import { useGetDay } from "../hooks/useGetDay"
 import { useMeasureType } from "../context/MeasureTypeContext"
 
-const initialValues = {
-	weekWeatherData: {
-		today: {
-			day: "Today",
-			temp_c: 0,
-			temp_f: 0,
-			feelslike_c: 0,
-			feelslike_f: 0,
-			weather: "Sunny",
-			icon: "sunny",
-			wind_kph: 0,
-			rainChances: 0,
-			maxTemperatureC: 0,
-			maxTemperatureF: 0,
-			minTemperatureC: 0,
-			minTemperatureF: 0,
-		},
-		tomorrow: {
-			day: "Tomorrow",
-			weather: "Sunny",
-			rainChances: 0,
-			maxTemperatureC: 0,
-			maxTemperatureF: 0,
-			minTemperatureC: 0,
-			minTemperatureF: 0,
-		},
-		pastTomorrow: {
-			day: "Past tomorrow",
-			weather: "Sunny",
-			rainChances: 0,
-			maxTemperatureC: 0,
-			maxTemperatureF: 0,
-			minTemperatureC: 0,
-			minTemperatureF: 0,
-		},
+const initialValues: WeatherDataContextValue = {
+	today: {
+		day: "Today",
+		temp_c: 0,
+		temp_f: 0,
+		feelslike_c: 0,
+		feelslike_f: 0,
+		weather: "Sunny",
+		icon: "sunny",
+		wind_kph: 0,
+		rainChances: 0,
+		maxTemperatureC: 0,
+		maxTemperatureF: 0,
+		minTemperatureC: 0,
+		minTemperatureF: 0,
+	},
+	tomorrow: {
+		day: "Tomorrow",
+		weather: "Sunny",
+		rainChances: 0,
+		maxTemperatureC: 0,
+		maxTemperatureF: 0,
+		minTemperatureC: 0,
+		minTemperatureF: 0,
+	},
+	pastTomorrow: {
+		day: "Past tomorrow",
+		weather: "Sunny",
+		rainChances: 0,
+		maxTemperatureC: 0,
+		maxTemperatureF: 0,
+		minTemperatureC: 0,
+		minTemperatureF: 0,
 	},
 }
 
 // Create context
 export const WeatherDataContext =
-	createContext<WeeklyWeatherProps>(initialValues)
+	createContext<WeatherDataContextValue>(initialValues)
 
 // Proveedor del contexto
 export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
@@ -62,7 +59,7 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 		WeatherDataContextValue | undefined
 	>(undefined)
 	const [weatherDataState, setWeatherDataState] =
-		useState<WeeklyWeatherProps>(initialValues)
+		useState<WeatherDataContextValue>(initialValues)
 
 	useEffect(() => {
 		const apiKey = import.meta.env.VITE_WEATHER_API_KEY
@@ -87,7 +84,7 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 						feelslike_f: weatherApiResponse.current.feelslike_f,
 						feelslike_c: weatherApiResponse.current.feelslike_c,
 						wind_kph: weatherApiResponse.current.wind_kph,
-						text: weatherApiResponse.current.condition.text,
+						weather: weatherApiResponse.current.condition.text,
 						icon: weatherApiResponse.current.condition.icon,
 						windDirection: weatherApiResponse.current.wind_dir,
 						uvIndex: weatherApiResponse.current.uv,
@@ -147,28 +144,41 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 					: measureType.measureType === "Fahrenheit"
 					? weatherAPIData.today.feelslike_f
 					: 0
-
 			const finalFeelslike_c = typeof feelslike_c === "number" ? feelslike_c : 0
-
 			const feelslike_f =
 				measureType.measureType === "Celsius"
 					? weatherAPIData.today.feelslike_c
 					: measureType.measureType === "Fahrenheit"
 					? weatherAPIData.today.feelslike_f
 					: 0
-
 			const finalFeelslike_f = typeof feelslike_f === "number" ? feelslike_f : 0
 
-			const weather =
-				weatherAPIData.today.text !== undefined
-					? weatherAPIData.today.text
-					: "Weather"
 			const windSpeed = weatherAPIData.today.wind_kph
-				? `${weatherAPIData.today.wind_kph} kph`
-				: "0 kph"
-			const weatherIcon = weatherAPIData.today.icon || "sunny"
-			const rainChances = weatherAPIData.today.rainChances || 0
+				? weatherAPIData.today.wind_kph
+				: 0
+			const windDirection = weatherAPIData.today.windDirection
+				? weatherAPIData.today.windDirection
+				: "NorthEast"
+			const humidity = weatherAPIData.today.humidity
+				? weatherAPIData.today.humidity
+				: 0
+			const uvIndex = weatherAPIData.today.uvIndex
+				? weatherAPIData.today.uvIndex
+				: 0
+			const icon = weatherAPIData.today.icon || "sunny"
 
+			const todayWeather = weatherAPIData.today.weather
+				? weatherAPIData.today.weather
+				: "Weather"
+			const todayRainChances = weatherAPIData.today?.rainChances || 0
+			const todayMaxTemperatureC = weatherAPIData.today?.maxTemperatureC || 0
+			const todayMaxTemperatureF = weatherAPIData.today?.maxTemperatureF || 0
+			const todayMinTemperatureC = weatherAPIData.today?.minTemperatureC || 0
+			const todayMinTemperatureF = weatherAPIData.today?.minTemperatureF || 0
+
+			const tomorrowWeather = weatherAPIData.tomorrow.weather
+				? weatherAPIData.tomorrow.weather
+				: "Weather"
 			const tomorrowRainChances = weatherAPIData.tomorrow?.rainChances || 0
 			const tomorrowMaxTemperatureC =
 				weatherAPIData.tomorrow?.maxTemperatureC || 0
@@ -179,6 +189,9 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 			const tomorrowMinTemperatureF =
 				weatherAPIData.tomorrow?.minTemperatureF || 0
 
+			const pastTomorrowWeather = weatherAPIData.pastTomorrow.weather
+				? weatherAPIData.pastTomorrow.weather
+				: "Weather"
 			const pastTomorrowRainChances =
 				weatherAPIData.pastTomorrow?.rainChances || 0
 			const pastTomorrowMaxTemperatureC =
@@ -192,35 +205,42 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 
 			setWeatherDataState((prevData) => ({
 				...prevData,
-				weekWeatherData: {
-					...prevData.weekWeatherData,
-					today: {
-						...prevData.weekWeatherData.today,
-						temp_c: finalTemperatureC,
-						temp_f: finalTemperatureF,
-						feelslike_c: finalFeelslike_c,
-						feelslike_f: finalFeelslike_f,
-						weatherIcon,
-						weather,
-						windSpeed,
-						rainChances,
-					},
-					tomorrow: {
-						...prevData.weekWeatherData.tomorrow,
-						rainChances: tomorrowRainChances,
-						maxTemperatureC: tomorrowMaxTemperatureC,
-						maxTemperatureF: tomorrowMaxTemperatureF,
-						minTemperatureC: tomorrowMinTemperatureC,
-						minTemperatureF: tomorrowMinTemperatureF,
-					},
-					pastTomorrow: {
-						...prevData.weekWeatherData.pastTomorrow,
-						rainChances: pastTomorrowRainChances,
-						maxTemperatureC: pastTomorrowMaxTemperatureC,
-						maxTemperatureF: pastTomorrowMaxTemperatureF,
-						minTemperatureC: pastTomorrowMinTemperatureC,
-						minTemperatureF: pastTomorrowMinTemperatureF,
-					},
+				today: {
+					...prevData.today,
+					day: today,
+					humidity,
+					windDirection,
+					uvIndex,
+					weather: todayWeather,
+					temp_c: finalTemperatureC,
+					temp_f: finalTemperatureF,
+					feelslike_f: finalFeelslike_f,
+					feelslike_c: finalFeelslike_c,
+					wind_kph: windSpeed,
+					icon,
+					rainChances: todayRainChances,
+					maxTemperatureC: todayMaxTemperatureC,
+					maxTemperatureF: todayMaxTemperatureF,
+					minTemperatureC: todayMinTemperatureC,
+					minTemperatureF: todayMinTemperatureF,
+				},
+				tomorrow: {
+					...prevData.tomorrow,
+					weather: tomorrowWeather,
+					rainChances: tomorrowRainChances,
+					maxTemperatureC: tomorrowMaxTemperatureC,
+					maxTemperatureF: tomorrowMaxTemperatureF,
+					minTemperatureC: tomorrowMinTemperatureC,
+					minTemperatureF: tomorrowMinTemperatureF,
+				},
+				pastTomorrow: {
+					...prevData.pastTomorrow,
+					weather: pastTomorrowWeather,
+					rainChances: pastTomorrowRainChances,
+					maxTemperatureC: pastTomorrowMaxTemperatureC,
+					maxTemperatureF: pastTomorrowMaxTemperatureF,
+					minTemperatureC: pastTomorrowMinTemperatureC,
+					minTemperatureF: pastTomorrowMinTemperatureF,
 				},
 			}))
 		}

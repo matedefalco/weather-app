@@ -6,7 +6,7 @@ export type WeatherDataProviderProps = PropsWithChildren<object>
 export interface TodaysWeatherData {
 	day?: ReactNode | string
 	humidity?: number
-	windDirection?: number
+	windDirection?: string
 	uvIndex?: number
 	weather?: string
 	temp_c?: number
@@ -14,7 +14,6 @@ export interface TodaysWeatherData {
 	feelslike_f?: number
 	feelslike_c?: number
 	wind_kph?: number
-	text?: string
 	icon?: string
 	rainChances?: number
 	maxTemperatureC?: number

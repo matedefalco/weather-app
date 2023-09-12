@@ -2,10 +2,11 @@ import { useContext } from "react"
 import LeftSideColumn from "./leftSide/LeftSideColumn"
 import RightSideColumn from "./rightSide/RightSideColumn"
 import { WeatherDataContext } from "../context/WeatherDataContext"
-import { WeeklyWeatherProps } from "../types/IWeatherData"
+import { WeatherDataContextValue } from "../types/IWeatherData"
 
 const WeatherLayout = () => {
-	const currentWeatherData = useContext<WeeklyWeatherProps>(WeatherDataContext)
+	const currentWeatherData =
+		useContext<WeatherDataContextValue>(WeatherDataContext)
 	console.log(
 		"Suka ~ file: WeatherLayout.tsx:9 ~ currentWeatherData:",
 		currentWeatherData
