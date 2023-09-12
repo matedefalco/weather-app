@@ -15,7 +15,7 @@ export interface TodaysWeatherData {
 	feelslike_c: number
 	wind_kph: number
 	icon: string
-	rainChances?: number
+	rainChances: number
 	maxTemperatureC: number
 	maxTemperatureF: number
 	minTemperatureC: number

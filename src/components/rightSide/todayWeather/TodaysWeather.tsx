@@ -8,13 +8,13 @@ const TodaysWeather: React.FC<TodaysWeatherProps> = ({ weatherData }) => {
 
 	return (
 		<div className="card card-side bg-[--primary-color] shadow-xl">
-			<div className="card-body flex flex-col lg:flex-row items-center justify-between">
+			<div className="card-body flex flex-col lg:flex-row items-center justify-between gap-0">
 				<img
 					src={weatherData.icon}
 					alt={weatherData.weather}
 					className="w-32 h-32"
 				/>
-				<div className="flex flex-col justify-end text-sm lg:text-md">
+				<div className="flex flex-col justify-end items-center lg:items-start text-sm lg:text-md">
 					<h2 className="card-title">{weatherData.weather}</h2>
 					<p>{weatherData.day}</p>
 					<div className="flex gap-1">
@@ -38,7 +38,7 @@ const TodaysWeather: React.FC<TodaysWeatherProps> = ({ weatherData }) => {
 						</p>
 					</div>
 				</div>
-				<div className="flex flex-col justify-end text-sm lg:text-md">
+				<div className="flex flex-col justify-end items-center lg:items-start text-sm lg:text-md">
 					<div className="flex gap-1">
 						<p className="flex-none">Humidity: </p>
 						<p className="font-bold">{weatherData.humidity}%</p>

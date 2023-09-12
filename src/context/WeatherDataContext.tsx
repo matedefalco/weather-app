@@ -165,7 +165,7 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 				: 0
 			const finalFeelslike_c = typeof feelslike_c === "number" ? feelslike_c : 0
 			const feelslike_f = weatherAPIData.today.feelslike_f
-				? weatherAPIData.today.feelslike_c
+				? weatherAPIData.today.feelslike_f
 				: 0
 			const finalFeelslike_f = typeof feelslike_f === "number" ? feelslike_f : 0
 
