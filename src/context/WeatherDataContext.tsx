@@ -4,7 +4,6 @@ import {
 	WeatherDataProviderProps,
 } from "../types/IWeatherData"
 import { useGetDay } from "../hooks/useGetDay"
-import { useMeasureType } from "../context/MeasureTypeContext"
 
 const initialValues: WeatherDataContextValue = {
 	today: {
@@ -54,7 +53,6 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 	const tomorrow = useGetDay({ dayType: "tomorrow" })
 	const pastTomorrow = useGetDay({ dayType: "pastTomorrow" })
 
-	const measureType = useMeasureType()
 	const [weatherAPIData, setWeatherAPIData] = useState<
 		WeatherDataContextValue | undefined
 	>(undefined)
@@ -75,6 +73,10 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 				return response.json()
 			})
 			.then((weatherApiResponse) => {
+				console.log(
+					"Suka ~ file: WeatherDataContext.tsx:76 ~ weatherApiResponse:",
+					weatherApiResponse
+				)
 				const weatherData: WeatherDataContextValue = {
 					today: {
 						day: today,
@@ -138,19 +140,13 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 			const finalTemperatureC = typeof temp_c === "number" ? temp_c : 0
 			const finalTemperatureF = typeof temp_f === "number" ? temp_f : 0
 
-			const feelslike_c =
-				measureType.measureType === "Celsius"
-					? weatherAPIData.today.feelslike_c
-					: measureType.measureType === "Fahrenheit"
-					? weatherAPIData.today.feelslike_f
-					: 0
+			const feelslike_c = weatherAPIData.today.feelslike_c
+				? weatherAPIData.today.feelslike_c
+				: 0
 			const finalFeelslike_c = typeof feelslike_c === "number" ? feelslike_c : 0
-			const feelslike_f =
-				measureType.measureType === "Celsius"
-					? weatherAPIData.today.feelslike_c
-					: measureType.measureType === "Fahrenheit"
-					? weatherAPIData.today.feelslike_f
-					: 0
+			const feelslike_f = weatherAPIData.today.feelslike_f
+				? weatherAPIData.today.feelslike_c
+				: 0
 			const finalFeelslike_f = typeof feelslike_f === "number" ? feelslike_f : 0
 
 			const windSpeed = weatherAPIData.today.wind_kph
@@ -176,9 +172,10 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 			const todayMinTemperatureC = weatherAPIData.today?.minTemperatureC || 0
 			const todayMinTemperatureF = weatherAPIData.today?.minTemperatureF || 0
 
-			const tomorrowWeather = weatherAPIData.tomorrow.weather
-				? weatherAPIData.tomorrow.weather
-				: "Weather"
+			const tomorrowWeather =
+				weatherAPIData.tomorrow && weatherAPIData.tomorrow.weather
+					? weatherAPIData.tomorrow.weather
+					: "Weather"
 			const tomorrowRainChances = weatherAPIData.tomorrow?.rainChances || 0
 			const tomorrowMaxTemperatureC =
 				weatherAPIData.tomorrow?.maxTemperatureC || 0
@@ -189,9 +186,10 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 			const tomorrowMinTemperatureF =
 				weatherAPIData.tomorrow?.minTemperatureF || 0
 
-			const pastTomorrowWeather = weatherAPIData.pastTomorrow.weather
-				? weatherAPIData.pastTomorrow.weather
-				: "Weather"
+			const pastTomorrowWeather =
+				weatherAPIData.pastTomorrow && weatherAPIData.pastTomorrow.weather
+					? weatherAPIData.pastTomorrow.weather
+					: "Weather"
 			const pastTomorrowRainChances =
 				weatherAPIData.pastTomorrow?.rainChances || 0
 			const pastTomorrowMaxTemperatureC =
@@ -244,7 +242,7 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 				},
 			}))
 		}
-	}, [weatherAPIData, measureType])
+	}, [weatherAPIData])
 
 	return (
 		<WeatherDataContext.Provider value={weatherDataState}>
