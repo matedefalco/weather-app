@@ -24,6 +24,7 @@ export interface TodaysWeatherData {
 
 export interface ForecastWeatherData {
 	day?: ReactNode | string
+	icon?: string
 	weather: string
 	rainChances?: number
 	maxTemperatureC?: number

@@ -13,15 +13,14 @@ const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ weekWeatherData }) => {
 			<div className="flex gap-4 justify-between overflow-scroll">
 				{dailyWeatherData.map(
 					(dayData, index) =>
-						// Verifica si dayData existe antes de renderizar el componente
 						dayData && (
 							<DailyWeatherCard
 								key={index}
 								day={dayData.day}
-								maxTemperatureC={dayData.maxTemperatureC}
+								minTemperatureC={dayData.minTemperatureC}
 								maxTemperatureC={dayData.maxTemperatureC}
 								minTemperatureF={dayData.minTemperatureF}
-								minTemperatureF={dayData.minTemperatureF}
+								maxTemperatureF={dayData.maxTemperatureF}
 								weather={dayData.weather}
 								weatherIcon={dayData.icon}
 								rainChances={dayData.rainChances}

@@ -49,7 +49,7 @@ const WeatherKPIs: React.FC<TodaysWeatherProps> = ({ weatherData }) => {
 			<div className="w-[80%] border bg-gray-300 h-[0.5]" />
 			<div className="flex gap-1">
 				<p className="text-gray-400 text-xs flex-none">Day Weather:</p>
-				<p className="text-xs font-bold">{weatherData.text}</p>
+				<p className="text-xs font-bold">{weatherData.weather}</p>
 			</div>
 			<div className="flex gap-1">
 				<p className="text-gray-400 text-xs flex-none">Wind:</p>
