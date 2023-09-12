@@ -73,10 +73,6 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 				return response.json()
 			})
 			.then((weatherApiResponse) => {
-				console.log(
-					"Suka ~ file: WeatherDataContext.tsx:76 ~ weatherApiResponse:",
-					weatherApiResponse
-				)
 				const weatherData: WeatherDataContextValue = {
 					today: {
 						day: today,

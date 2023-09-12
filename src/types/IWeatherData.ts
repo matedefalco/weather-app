@@ -34,9 +34,9 @@ export interface ForecastWeatherData {
 
 // Definir un tipo para el valor del contexto
 export interface WeatherDataContextValue {
-	today?: TodaysWeatherData
-	tomorrow?: ForecastWeatherData
-	pastTomorrow?: ForecastWeatherData
+	today: TodaysWeatherData
+	tomorrow: ForecastWeatherData
+	pastTomorrow: ForecastWeatherData
 }
 
 export interface DayFilterProps {
