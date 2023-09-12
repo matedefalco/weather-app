@@ -4,6 +4,7 @@ import {
 	WeatherDataProviderProps,
 } from "../types/IWeatherData"
 import { useGetDay } from "../hooks/useGetDay"
+import { useLocation } from "./LocationContext"
 
 const initialValues: WeatherDataContextValue = {
 	today: {
@@ -54,6 +55,8 @@ export const WeatherDataContext =
 export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 	children,
 }) => {
+	const { location } = useLocation()
+
 	const today = useGetDay({ dayType: "today" })
 	const tomorrow = useGetDay({ dayType: "tomorrow" })
 	const pastTomorrow = useGetDay({ dayType: "pastTomorrow" })
@@ -74,7 +77,6 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 
 	useEffect(() => {
 		const apiKey = import.meta.env.VITE_WEATHER_API_KEY
-		const location = "Buenos Aires"
 
 		fetch(
 			`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=3`
@@ -151,7 +153,7 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 			.catch((fetchError) => {
 				console.log(fetchError.message)
 			})
-	}, [dias])
+	}, [dias, location])
 
 	useEffect(() => {
 		if (weatherAPIData !== undefined && weatherAPIData.today !== undefined) {
