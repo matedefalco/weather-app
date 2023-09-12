@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react"
+import React, { createContext, useState, useEffect, useMemo } from "react"
 import {
 	WeatherDataContextValue,
 	WeatherDataProviderProps,
@@ -20,9 +20,13 @@ const initialValues: WeatherDataContextValue = {
 		maxTemperatureF: 0,
 		minTemperatureC: 0,
 		minTemperatureF: 0,
+		humidity: 0,
+		windDirection: "Wind Direction",
+		uvIndex: 0,
 	},
 	tomorrow: {
 		day: "Tomorrow",
+		icon: "",
 		weather: "Sunny",
 		rainChances: 0,
 		maxTemperatureC: 0,
@@ -32,6 +36,7 @@ const initialValues: WeatherDataContextValue = {
 	},
 	pastTomorrow: {
 		day: "Past tomorrow",
+		icon: "",
 		weather: "Sunny",
 		rainChances: 0,
 		maxTemperatureC: 0,
@@ -53,6 +58,14 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 	const tomorrow = useGetDay({ dayType: "tomorrow" })
 	const pastTomorrow = useGetDay({ dayType: "pastTomorrow" })
 
+	const dias = useMemo(() => {
+		return {
+			today: today,
+			tomorrow: tomorrow,
+			pastTomorrow: pastTomorrow,
+		}
+	}, [today, tomorrow, pastTomorrow])
+
 	const [weatherAPIData, setWeatherAPIData] = useState<
 		WeatherDataContextValue | undefined
 	>(undefined)
@@ -73,13 +86,9 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 				return response.json()
 			})
 			.then((weatherApiResponse) => {
-				console.log(
-					"Suka ~ file: WeatherDataContext.tsx:76 ~ weatherApiResponse 2:",
-					weatherApiResponse.forecast.forecastday[1]
-				)
 				const weatherData: WeatherDataContextValue = {
 					today: {
-						day: today,
+						day: dias.today,
 						temp_c: weatherApiResponse.current.temp_c,
 						humidity: weatherApiResponse.current.humidity,
 						temp_f: weatherApiResponse.current.temp_f,
@@ -93,9 +102,17 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 						rainChances:
 							weatherApiResponse.forecast.forecastday[0].day
 								.daily_chance_of_rain,
+						minTemperatureC:
+							weatherApiResponse.forecast.forecastday[0].day.mintemp_c,
+						maxTemperatureC:
+							weatherApiResponse.forecast.forecastday[0].day.maxtemp_c,
+						minTemperatureF:
+							weatherApiResponse.forecast.forecastday[0].day.mintemp_f,
+						maxTemperatureF:
+							weatherApiResponse.forecast.forecastday[0].day.maxtemp_f,
 					},
 					tomorrow: {
-						day: tomorrow,
+						day: dias.tomorrow,
 						icon: weatherApiResponse.forecast.forecastday[1].day.condition.icon,
 						weather:
 							weatherApiResponse.forecast.forecastday[1].day.condition.text,
@@ -112,7 +129,7 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 							weatherApiResponse.forecast.forecastday[1].day.mintemp_f,
 					},
 					pastTomorrow: {
-						day: pastTomorrow,
+						day: dias.pastTomorrow,
 						icon: weatherApiResponse.forecast.forecastday[2].day.condition.icon,
 						weather:
 							weatherApiResponse.forecast.forecastday[2].day.condition.text,
@@ -130,15 +147,11 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 					},
 				}
 				setWeatherAPIData(weatherData)
-				console.log(
-					"Suka ~ file: WeatherDataContext.tsx:125 ~ weatherAPIData:",
-					weatherAPIData
-				)
 			})
 			.catch((fetchError) => {
 				console.log(fetchError.message)
 			})
-	}, [today])
+	}, [dias])
 
 	useEffect(() => {
 		if (weatherAPIData !== undefined && weatherAPIData.today !== undefined) {
@@ -215,7 +228,7 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 				...prevData,
 				today: {
 					...prevData.today,
-					day: today,
+					day: dias.today,
 					humidity,
 					windDirection,
 					uvIndex,
@@ -234,6 +247,7 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 				},
 				tomorrow: {
 					...prevData.tomorrow,
+					day: dias.tomorrow,
 					weather: tomorrowWeather,
 					icon: tomorrowIcon,
 					rainChances: tomorrowRainChances,
@@ -244,6 +258,7 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 				},
 				pastTomorrow: {
 					...prevData.pastTomorrow,
+					day: dias.pastTomorrow,
 					weather: pastTomorrowWeather,
 					icon: pastTomorrowIcon,
 					rainChances: pastTomorrowRainChances,
@@ -254,7 +269,7 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 				},
 			}))
 		}
-	}, [weatherAPIData])
+	}, [weatherAPIData, dias])
 
 	return (
 		<WeatherDataContext.Provider value={weatherDataState}>

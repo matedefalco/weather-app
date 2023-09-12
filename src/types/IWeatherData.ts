@@ -4,33 +4,33 @@ import { PropsWithChildren, ReactNode } from "react"
 export type WeatherDataProviderProps = PropsWithChildren<object>
 
 export interface TodaysWeatherData {
-	day?: ReactNode | string
-	humidity?: number
-	windDirection?: string
-	uvIndex?: number
-	weather?: string
-	temp_c?: number
-	temp_f?: number
-	feelslike_f?: number
-	feelslike_c?: number
-	wind_kph?: number
-	icon?: string
+	day: ReactNode | string
+	humidity: number
+	windDirection: string
+	uvIndex: number
+	weather: string
+	temp_c: number
+	temp_f: number
+	feelslike_f: number
+	feelslike_c: number
+	wind_kph: number
+	icon: string
 	rainChances?: number
-	maxTemperatureC?: number
-	maxTemperatureF?: number
-	minTemperatureC?: number
-	minTemperatureF?: number
+	maxTemperatureC: number
+	maxTemperatureF: number
+	minTemperatureC: number
+	minTemperatureF: number
 }
 
 export interface ForecastWeatherData {
-	day?: ReactNode | string
-	icon?: string
+	day: ReactNode | string
+	icon: string
 	weather: string
-	rainChances?: number
-	maxTemperatureC?: number
-	maxTemperatureF?: number
-	minTemperatureC?: number
-	minTemperatureF?: number
+	rainChances: number
+	maxTemperatureC: number
+	maxTemperatureF: number
+	minTemperatureC: number
+	minTemperatureF: number
 }
 
 // Definir un tipo para el valor del contexto

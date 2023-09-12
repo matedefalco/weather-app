@@ -7,6 +7,10 @@ const WeeklyWeather: React.FC<WeeklyWeatherProps> = ({ weekWeatherData }) => {
 
 	// Crea un arreglo con los datos que quieres mostrar en los componentes
 	const dailyWeatherData = [today, tomorrow, pastTomorrow]
+	console.log(
+		"Suka ~ file: WeeklyWeather.tsx:10 ~ dailyWeatherData:",
+		dailyWeatherData
+	)
 
 	return (
 		<div className="flex justify-center">
