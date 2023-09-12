@@ -15,10 +15,10 @@ const weatherAltMap: Record<string, string> = {
 }
 
 const TodaysWeather: React.FC<TodaysWeatherProps> = ({ weatherData }) => {
-	// Obtén el alt correspondiente al tipo de clima
-	const alt = weatherAltMap[weatherData.weatherIcon]
-
 	const { measureType } = useMeasureType()
+
+	// Obtén el alt correspondiente al tipo de clima
+	const alt = weatherAltMap[weatherData.icon || "dummyAlt"]
 
 	// Busca la imagen correspondiente en weatherIcons.images usando el alt
 	const weatherIconSrc =
@@ -34,12 +34,13 @@ const TodaysWeather: React.FC<TodaysWeatherProps> = ({ weatherData }) => {
 				/>
 				<div className="flex flex-col justify-end text-sm lg:text-md">
 					<h2 className="card-title">{weatherData.weather}</h2>
-					<p className="">{weatherData.day}</p>
+					<p>{weatherData.day}</p>
 					<div className="flex gap-1">
 						<p className="flex-none">Temperature: </p>
 						<p className="font-bold">
-							{weatherData.temperature}
-							{measureType == "Celsius" ? "°C" : "ºF"}
+							{measureType === "Celsius"
+								? `${weatherData.temp_c}°C`
+								: `${weatherData.temp_f}°F`}
 						</p>
 					</div>
 					<div className="flex gap-1">
@@ -49,34 +50,34 @@ const TodaysWeather: React.FC<TodaysWeatherProps> = ({ weatherData }) => {
 					<div className="flex gap-1">
 						<p className="flex-none">Feels Like Temperature: </p>
 						<p className="font-bold">
-							{measureType == "Celsius" ? "°C" : "ºF"}
+							{measureType === "Celsius"
+								? `${weatherData.feelslike_c}°C`
+								: `${weatherData.feelslike_f}°F`}
 						</p>
 					</div>
 				</div>
 				<div className="flex flex-col justify-end text-sm lg:text-md">
 					<div className="flex gap-1">
 						<p className="flex-none">Humidity: </p>
-						<p className="font-bold">%</p>
+						<p className="font-bold">{weatherData.humidity}%</p>
 					</div>
 					<div className="flex gap-1">
 						<p className="flex-none">Wind Strength: </p>
-						<p className="font-bold">km/h</p>
+						<p className="font-bold">
+							{weatherData.wind_kph}
+							km/h
+						</p>
 					</div>
 					<div className="flex gap-1">
 						<p className="flex-none">Wind Direction: </p>
-						<p className="font-bold">direction</p>
+						<p className="font-bold">{weatherData.windDirection}</p>
 					</div>
 					<div className="flex gap-1">
 						<p className="flex-none">UV Index: </p>
-						<p className="font-bold">index</p>
+						<p className="font-bold">{weatherData.uvIndex}</p>
 					</div>
 				</div>
 				<WeatherChart />
-				{/* <p>Humidity: {weatherData.humidity}%</p>
-				<p>Wind Strength: {weatherData.windStrength} km/h</p>
-				<p>Wind Direction: {weatherData.windDirection}</p>
-				<p>UV Index: {weatherData.uvIndex}</p>
-				<p>Feels Like Temperature: {weatherData.feelsLikeTemperature}°C</p> */}
 			</div>
 		</div>
 	)
