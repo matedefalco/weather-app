@@ -73,6 +73,10 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 				return response.json()
 			})
 			.then((weatherApiResponse) => {
+				console.log(
+					"Suka ~ file: WeatherDataContext.tsx:76 ~ weatherApiResponse 2:",
+					weatherApiResponse.forecast.forecastday[1]
+				)
 				const weatherData: WeatherDataContextValue = {
 					today: {
 						day: today,
@@ -92,7 +96,8 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 					},
 					tomorrow: {
 						day: tomorrow,
-						weather: weatherApiResponse.forecast.forecastday[1].condition.text,
+						weather:
+							weatherApiResponse.forecast.forecastday[1].day.condition.text,
 						rainChances:
 							weatherApiResponse.forecast.forecastday[1].day
 								.daily_chance_of_rain,
@@ -107,7 +112,8 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 					},
 					pastTomorrow: {
 						day: pastTomorrow,
-						weather: weatherApiResponse.forecast.forecastday[2].condition.text,
+						weather:
+							weatherApiResponse.forecast.forecastday[2].day.condition.text,
 						rainChances:
 							weatherApiResponse.forecast.forecastday[2].day
 								.daily_chance_of_rain,
@@ -122,6 +128,10 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 					},
 				}
 				setWeatherAPIData(weatherData)
+				console.log(
+					"Suka ~ file: WeatherDataContext.tsx:125 ~ weatherAPIData:",
+					weatherAPIData
+				)
 			})
 			.catch((fetchError) => {
 				console.log(fetchError.message)
@@ -129,7 +139,6 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 	}, [today])
 
 	useEffect(() => {
-		// Actualizar el componente cuando cambie weatherData
 		if (weatherAPIData !== undefined && weatherAPIData.today !== undefined) {
 			const temp_c = weatherAPIData.today.temp_c
 			const temp_f = weatherAPIData.today.temp_f
@@ -237,6 +246,10 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 					minTemperatureF: pastTomorrowMinTemperatureF,
 				},
 			}))
+			console.log(
+				"Suka ~ file: WeatherDataContext.tsx:60 ~ weatherDataState:",
+				weatherDataState
+			)
 		}
 	}, [weatherAPIData])
 
