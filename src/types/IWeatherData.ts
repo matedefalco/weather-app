@@ -4,7 +4,7 @@ import { PropsWithChildren, ReactNode } from "react"
 export type WeatherDataProviderProps = PropsWithChildren<object>
 
 export interface TodaysWeatherData {
-	day: ReactNode | string
+	day: string
 	humidity: number
 	windDirection: string
 	uvIndex: number

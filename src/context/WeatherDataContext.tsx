@@ -63,9 +63,9 @@ export const WeatherDataProvider: React.FC<WeatherDataProviderProps> = ({
 
 	const dias = useMemo(() => {
 		return {
-			today: today,
-			tomorrow: tomorrow,
-			pastTomorrow: pastTomorrow,
+			today: today ? today.toString() : "today",
+			tomorrow: tomorrow ? tomorrow.toString() : "tomorrow",
+			pastTomorrow: pastTomorrow ? pastTomorrow.toString() : "pastTomorrow",
 		}
 	}, [today, tomorrow, pastTomorrow])
 
